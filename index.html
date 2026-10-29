@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HT Logistics - Công Ty Logistics Hàng Đầu Việt Nam | hoangthinh.net</title>
+    <meta name="description" content="Hoàng Thịnh Logistics cung cấp giải pháp vận chuyển hàng Trung Quốc - Việt Nam, ủy thác xuất nhập khẩu, tra cứu mã HS Code và theo dõi hành trình đơn hàng chính xác.">
+    
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS - Theme Đen Huyền Bí & Vàng Gold Sang Trọng -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. Thanh điều hướng Navbar (Nền Đen Kính Mờ & Gold) -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-wrap">
+            <a href="#home" class="logo">
+                <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                <div><span class="text-gold">HT</span> <span>LOGISTICS</span></div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Trang chủ</a></li>
+                <li><a href="#tracking">Tra cứu vận đơn</a></li>
+                <li><a href="#services">Dịch vụ</a></li>
+                <li><a href="#about-us">Về chúng tôi</a></li>
+                <li><a href="#recruitment">Tuyển dụng</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="tel:0826828131" class="hotline-pill">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>0826.828.131</span>
+                </a>
+                <a href="#tracking" class="btn btn-primary"><i class="fas fa-search"></i> Tra cứu đơn</a>
+                <button class="mobile-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section - Nền Đen & Vàng Gold Hoàng Gia -->
+    <header id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <div class="badge-tag">
+                    <i class="fas fa-gem"></i> Dịch Vụ Vận Tải Quốc Tế Cao Cấp & Chu Đáo
+                </div>
+                <h1>Vận Tải Quốc Tế <br><span class="text-gold">Chuyên Nghiệp & Đẳng Cấp</span></h1>
+                <p>Hoàng Thịnh Logistics định hướng trở thành công ty logistics hàng đầu tại Việt Nam và khu vực Đông Nam Á với đội ngũ tinh nhuệ, hạ tầng hiện đại và chi phí tối ưu.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#tracking" class="btn btn-primary"><i class="fas fa-truck-fast"></i> Tra Cứu Hành Trình</a>
+                    <a href="#about-us" class="btn btn-outline"><i class="fas fa-info-circle"></i> Về Chúng Tôi</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-col">
+                        <div class="stat-num text-gold">100%</div>
+                        <div class="stat-desc">Bảo đảm an toàn hàng hoá</div>
+                    </div>
+                    <div class="stat-col">
+                        <div class="stat-num text-gold">3 - 5</div>
+                        <div class="stat-desc">Ngày về kho Hà Nội</div>
+                    </div>
+                    <div class="stat-col">
+                        <div class="stat-num text-gold">24/7</div>
+                        <div class="stat-desc">Hỗ trợ chăm sóc nhiệt tình</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="hero-card-main">
+                    <!-- Ảnh hoạt động từ hoangthinh.net -->
+                    <img src="https://hoangthinh-ca5a3.web.app/BanerGT1.png" alt="Hoàng Thịnh Logistics Banner" onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8ed7c1590f?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="hero-floating-badge">
+                    <div class="floating-icon"><i class="fas fa-certificate"></i></div>
+                    <div>
+                        <strong style="display:block; color:var(--primary-light);">Uy tín từ sự thực chất</strong>
+                        <small style="color:var(--text-muted);">Đồng hành cùng hàng ngàn doanh nghiệp</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Khu vực Tra Cứu Trực Tuyến (Vận đơn & Mã HS Code) -->
+    <section id="tracking" style="padding-top: 0;">
+        <div class="container">
+            <div class="tracking-wrapper">
+                <div class="tracking-tabs">
+                    <button class="tab-btn active" data-target="tab-tracking">
+                        <i class="fas fa-truck-fast"></i> Tra Cứu Vận Đơn
+                    </button>
+                    <button class="tab-btn" data-target="tab-hscode">
+                        <i class="fas fa-file-invoice-dollar"></i> Tra Cứu Mã HS Code
+                    </button>
+                </div>
+                
+                <!-- Tab 1: Tra cứu đơn hàng -->
+                <div id="tab-tracking" class="tab-pane active">
+                    <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; color: #FFFFFF;">Hành Trình Đơn Hàng Của Bạn</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">Theo dõi trạng thái đơn hàng của bạn một cách dễ dàng. Nhập mã vận đơn bên dưới để xem thông tin trực tiếp từ hệ thống kho.</p>
+                    
+                    <div class="search-input-group">
+                        <input type="text" id="tracking-input" class="search-input" placeholder="Nhập mã vận đơn (VD: VN123456, HT8899)...">
+                        <button id="tracking-btn" class="btn btn-primary"><i class="fas fa-search"></i> Tra Cứu</button>
+                    </div>
+                    
+                    <div id="tracking-feedback" style="display: none; margin-bottom: 1rem; font-size: 0.95rem;"></div>
+
+                    <!-- Timeline trạng thái đơn hàng -->
+                    <div id="tracking-timeline" class="status-timeline">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+                            <div>
+                                <span style="font-size: 0.85rem; color: var(--text-muted);">Mã vận đơn:</span>
+                                <strong id="display-tracking-code" class="text-gold" style="font-size: 1.15rem; margin-left: 0.5rem;">VN123456</strong>
+                            </div>
+                            <span style="font-size: 0.85rem; background: rgba(212, 175, 55, 0.15); color: var(--primary-light); border: 1px solid var(--border-gold); padding: 0.25rem 0.75rem; border-radius: 99px; font-weight: 600;">Hệ thống trực tuyến</span>
+                        </div>
+                        
+                        <div class="timeline-steps">
+                            <div class="timeline-step">
+                                <div class="step-circle"><i class="fas fa-box"></i></div>
+                                <div class="step-title">Đã Nhập Kho TQ</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-circle"><i class="fas fa-shipping-fast"></i></div>
+                                <div class="step-title">Xuất Kho / Vận Chuyển</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-circle"><i class="fas fa-passport"></i></div>
+                                <div class="step-title">Thông Quan Hải Quan</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-circle"><i class="fas fa-warehouse"></i></div>
+                                <div class="step-title">Kho Hà Nội (Thanh Trì)</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-circle"><i class="fas fa-home"></i></div>
+                                <div class="step-title">Giao Khách Hàng</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Tra cứu HS Code & Tư vấn nhập khẩu -->
+                <div id="tab-hscode" class="tab-pane">
+                    <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; color: #FFFFFF;">Tra Cứu Mã HS Code & Biểu Thuế Xuất Nhập Khẩu</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">Hỗ trợ thông tin mã HS Code hàng hóa, mức thuế suất ưu đãi và các điều kiện cần có khi nhập khẩu vào Việt Nam.</p>
+                    
+                    <div class="search-input-group">
+                        <input type="text" id="hs-input" class="search-input" placeholder="Nhập mã HS (VD: 8504, 6109) hoặc tên mặt hàng...">
+                        <button id="hs-btn" class="btn btn-primary"><i class="fas fa-search"></i> Kiểm Tra Thuế</button>
+                    </div>
+                    
+                    <div id="hs-result" style="display: none; margin-top: 1.5rem;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Dịch vụ Tiêu Biểu (Services Section) -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Dịch Vụ Logistics <span class="text-gold">Toàn Diện</span></h2>
+                <p class="section-desc">Cung cấp giải pháp chuỗi cung ứng khép kín từ kho Trung Quốc đến tận tay khách hàng tại Việt Nam.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-box">
+                    <div class="service-icon-wrap"><i class="fas fa-truck-moving"></i></div>
+                    <h3>Vận Chuyển Trung - Việt</h3>
+                    <p>Vận chuyển đường bộ và đường biển tốc độ cao. Cam kết thời gian về kho chỉ từ 3 - 5 ngày làm việc với quy trình giám sát nghiêm ngặt.</p>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon-wrap"><i class="fas fa-shopping-bag"></i></div>
+                    <h3>Đặt Hàng & Mua Hộ TMĐT</h3>
+                    <p>Hỗ trợ tìm kiếm xưởng sản xuất, đàm phán giá tốt và mua hộ trên Taobao, 1688, Tmall với tỷ giá công khai, cạnh tranh nhất thị trường.</p>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon-wrap"><i class="fas fa-stamp"></i></div>
+                    <h3>Ủy Thác Xuất Nhập Khẩu</h3>
+                    <p>Đại diện doanh nghiệp làm thủ tục hải quan trọn gói, xin C/O Form E hưởng thuế suất ưu đãi 0%, xuất hóa đơn VAT đầy đủ, hợp pháp.</p>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon-wrap"><i class="fas fa-warehouse"></i></div>
+                    <h3>Kho Bãi & Phân Phối</h3>
+                    <p>Hệ thống kho bãi rộng lớn tại Thanh Trì (Hà Nội) và các tổng kho cửa khẩu, trang bị camera giám sát và quản lý đơn tự động.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Về Chúng Tôi (About Us Section - Dữ liệu thực tế hoangthinh.net) -->
+    <section id="about-us" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="badge-tag"><i class="fas fa-building"></i> Về Hoàng Thịnh Logistics</div>
+                    <h2>Định Hướng Trở Thành Đơn Vị <span class="text-gold">Hàng Đầu</span></h2>
+                    <p>Hoàng Thịnh Logistics định hướng trở thành công ty logistics hàng đầu tại Việt Nam và khu vực Đông Nam Á. Đội ngũ chuyên viên tại Hoàng Thịnh Logistics được đào tạo bài bản, thông thạo tiếng Trung, tiếng Anh và đề cao trách nhiệm trong công việc.</p>
+                    <p>Với cơ sở vật chất hiện đại, thời gian vận chuyển nhanh chóng và dịch vụ chăm sóc khách hàng nhiệt tình, chu đáo, chúng tôi cung cấp một giải pháp logistics chất lượng cao, đi kèm giá thành phù hợp và trải nghiệm khách hàng xuất sắc.</p>
+                    <p>Trên con đường đó, sự đồng hành của Quý khách hàng, Quý đối tác chính là động lực to lớn đã giúp đội ngũ của chúng tôi không ngừng hoàn thiện và phát triển.</p>
+                </div>
+                
+                <div class="about-image-wrap">
+                    <img src="https://hoangthinh-ca5a3.web.app/HSNL.png" alt="Hợp tác Hoàng Thịnh Logistics" onerror="this.src='https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Tin Tức & Tuyển Dụng (Recruitment Section) -->
+    <section id="recruitment">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Tin Tức & <span class="text-gold">Tuyển Dụng</span></h2>
+                <p class="section-desc">Cập nhật tin tức hoạt động mới nhất của công ty và cơ hội nghề nghiệp hấp dẫn.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-box">
+                    <span style="font-size:0.8rem; font-weight:700; color:var(--primary); background:var(--primary-glow); border:1px solid var(--border-gold); padding:0.25rem 0.6rem; border-radius:4px; display:inline-block; margin-bottom:1rem;">THÔNG BÁO</span>
+                    <h3>Vị Trí Nhân Viên Marketing</h3>
+                    <p>Chúng tôi đang tìm kiếm nhân viên Marketing tài năng gia nhập đội ngũ. Yêu cầu 1-2 năm kinh nghiệm, sáng tạo, có tinh thần cầu tiến.</p>
+                    <a href="tel:0826828131" style="color:var(--primary); font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Ứng tuyển ngay &rarr;</a>
+                </div>
+                
+                <div class="service-box">
+                    <span style="font-size:0.8rem; font-weight:700; color:var(--success); background:rgba(16, 185, 129, 0.15); border:1px solid rgba(16, 185, 129, 0.3); padding:0.25rem 0.6rem; border-radius:4px; display:inline-block; margin-bottom:1rem;">HOẠT ĐỘNG KHO</span>
+                    <h3>Mở Rộng Kho Bãi Tại Hà Nội</h3>
+                    <p>Nhằm đáp ứng lượng hàng tăng cao, Hoàng Thịnh chính thức mở rộng thêm 500m² diện tích kho bãi khu vực Thanh Trì, nâng cao tốc độ trả hàng.</p>
+                    <a href="#about-us" style="color:var(--primary); font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Xem chi tiết &rarr;</a>
+                </div>
+                
+                <div class="service-box">
+                    <span style="font-size:0.8rem; font-weight:700; color:var(--primary-light); background:var(--primary-glow); border:1px solid var(--border-gold); padding:0.25rem 0.6rem; border-radius:4px; display:inline-block; margin-bottom:1rem;">TUYỂN DỤNG</span>
+                    <h3>Thực Tập Sinh Logistics</h3>
+                    <p>Cơ hội cọ xát thực tế cho sinh viên ngành Xuất nhập khẩu / Logistics. Chương trình thực tập 3 tháng có trợ cấp và hỗ trợ lên nhân viên chính thức.</p>
+                    <a href="tel:0968599951" style="color:var(--primary); font-weight:700; text-decoration:none; display:inline-block; margin-top:1rem;">Liên hệ phòng KD &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Thông Tin Doanh Nghiệp & Liên Hệ (Chuẩn xác từ hoangthinh.net) -->
+    <section id="contact" style="background: var(--bg-soft); border-top: 1px solid var(--border-light);">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Thông Tin Liên Hệ & <span class="text-gold">Trụ Sở</span></h2>
+                <p class="section-desc">Kết nối trực tiếp với văn phòng đại diện và hệ thống kho bãi của Hoàng Thịnh Logistics.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Địa chỉ Văn phòng</h4>
+                            <p>19/785 Nguyễn Khoái, Thanh Trì, Hà Nội</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-warehouse"></i>
+                        <div>
+                            <h4>Địa chỉ Kho tại HN</h4>
+                            <p>19/785 Nguyễn Khoái, Thanh Trì, Hà Nội</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-phone-volume"></i>
+                        <div>
+                            <h4>Điện thoại / Hotline</h4>
+                            <p><a href="tel:0826828131" style="color:var(--primary-light); text-decoration:none;">0826.828.131</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <h4>Phòng Kinh Doanh</h4>
+                            <p><a href="tel:0968599951" style="color:var(--primary-light); text-decoration:none;">0968.599.951</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card" style="grid-column: span 2;">
+                        <i class="fas fa-file-contract"></i>
+                        <div>
+                            <h4>Mã số Giấy chứng nhận ĐKKD</h4>
+                            <p class="text-gold">011055952</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-box">
+                    <h3>Gửi Yêu Cầu Báo Giá Nhanh</h3>
+                    <form onsubmit="event.preventDefault(); alert('Cảm ơn bạn! Chuyên viên Hoàng Thịnh Logistics sẽ liên hệ lại ngay trong 5 phút.');">
+                        <div class="form-group">
+                            <label>Họ và tên của bạn</label>
+                            <input type="text" class="form-control" placeholder="Nguyễn Văn A" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại Zalo</label>
+                            <input type="tel" class="form-control" placeholder="09xxxxxxxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mặt hàng cần vận chuyển / Nhập khẩu</label>
+                            <input type="text" class="form-control" placeholder="Quần áo, đồ gia dụng, máy móc..." required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+                            <i class="fas fa-paper-plane"></i> Nhận Báo Giá Miễn Phí
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Sticky Action Icons bên phải màn hình (Đặc trưng hoangthinh.net) -->
+    <div class="sticky-actions">
+        <a href="tel:0826828131" class="sticky-btn phone" title="Gọi Hotline: 0826.828.131" aria-label="Gọi điện">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://zalo.me/1995023241660753541" target="_blank" rel="noopener" class="sticky-btn zalo" title="Chat Zalo OA" aria-label="Zalo OA">
+            <i class="fas fa-comment-dots"></i>
+        </a>
+        <a href="#tracking" class="sticky-btn" title="Tra cứu vận đơn" aria-label="Tra cứu">
+            <i class="fas fa-truck"></i>
+        </a>
+        <a href="#home" class="sticky-btn" title="Lên đầu trang" aria-label="Lên đầu trang">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <!-- 9. Footer - Nền Đen Tuyền & Viền Gold -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                        <div><span class="text-gold">HT</span> <span>LOGISTICS</span></div>
+                    </div>
+                    <p>Công ty logistics chuyên tuyến Trung Quốc - Việt Nam uy tín hàng đầu. Cam kết tốc độ vận chuyển nhanh chóng, an toàn và tối ưu chi phí cho mọi đối tác.</p>
+                    <p style="font-size:0.85rem; color:var(--primary);">MSDN: 011055952 do Sở KH&ĐT cấp.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Về Hoàng Thịnh</h4>
+                    <ul>
+                        <li><a href="#home">Trang chủ</a></li>
+                        <li><a href="#about-us">Giới thiệu công ty</a></li>
+                        <li><a href="#services">Dịch vụ vận tải</a></li>
+                        <li><a href="#recruitment">Tin tức & Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Tra Cứu Trực Tuyến</h4>
+                    <ul>
+                        <li><a href="#tracking">Tra cứu mã vận đơn</a></li>
+                        <li><a href="#tracking">Biểu thuế & Mã HS Code</a></li>
+                        <li><a href="#services">Chính ngạch & Tiểu ngạch</a></li>
+                        <li><a href="#contact">Hệ thống kho bãi</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Văn Phòng & Tổng Kho</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:6px;"></i> 19/785 Nguyễn Khoái, Thanh Trì, Hà Nội</li>
+                        <li><i class="fas fa-phone-alt" style="color:var(--primary); margin-right:6px;"></i> Hotline: 0826.828.131</li>
+                        <li><i class="fas fa-headset" style="color:var(--primary); margin-right:6px;"></i> Phòng KD: 0968.599.951</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hoàng Thịnh Logistics (hoangthinh.net). Thiết kế Đen & Vàng Gold sang trọng.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
