@@ -1,0 +1,914 @@
+/* ==========================================================================
+   HT LOGISTICS - THEME ĐEN HUYỀN BÍ & VÀNG GOLD SANG TRỌNG (LUXURY BLACK & GOLD)
+   Thông tin doanh nghiệp chuẩn từ https://hoangthinh.net/
+   ========================================================================== */
+
+:root {
+    /* Bảng màu chính - Tông đen & than chì cao cấp */
+    --bg-main: #0B0F17;        /* Đen tuyền sâu thẳm */
+    --bg-soft: #111827;        /* Đen than chì (Sections) */
+    --bg-card: #161F30;        /* Nền thẻ card nổi bật */
+    --bg-card-hover: #1E293B;  /* Nền thẻ khi hover */
+    --bg-input: #1E293B;       /* Nền ô nhập liệu */
+    
+    /* Màu điểm nhấn VÀNG GOLD (Gold Accents) */
+    --primary: #D4AF37;        /* Vàng Gold hoàng gia sang trọng */
+    --primary-light: #F3E5AB;  /* Vàng nhạt / Champagne */
+    --primary-dark: #AA820A;   /* Vàng đồng trầm ấm */
+    --primary-glow: rgba(212, 175, 55, 0.15); /* Hiệu ứng tỏa sáng vàng */
+    --gold-gradient: linear-gradient(135deg, #F9E79F 0%, #D4AF37 50%, #B7950B 100%);
+    
+    /* Màu trạng thái */
+    --success: #10B981;        /* Xanh ngọc hoàn thành */
+    --warning: #F59E0B;        /* Đang xử lý */
+    
+    /* Màu chữ trên nền đen */
+    --text-main: #F8FAFC;      /* Trắng ngà sáng rõ */
+    --text-muted: #94A3B8;     /* Xám bạc phụ đề */
+    --text-light: #64748B;     /* Xám nhạt */
+    
+    /* Đường viền & Đổ bóng ánh kim (Gold Glow Shadows) */
+    --border-light: rgba(255, 255, 255, 0.08);
+    --border-gold: rgba(212, 175, 55, 0.3);
+    --border-gold-hover: rgba(212, 175, 55, 0.7);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.6);
+    --shadow-gold: 0 8px 25px rgba(212, 175, 55, 0.25);
+    
+    /* Kích thước & Khoảng cách */
+    --container: 1200px;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+    
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Container chuẩn */
+.container {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Chữ ánh kim Vàng Gold */
+.text-gold {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Nút bấm (Buttons) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--gold-gradient);
+    color: #0B0F17;
+    box-shadow: var(--shadow-gold);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary-glow);
+    transform: translateY(-2px);
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+/* Header & Navbar - Nền đen kính mờ bóng bẩy */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(11, 15, 23, 0.9);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-light);
+    transition: all var(--transition);
+    padding: 0.85rem 0;
+}
+
+.navbar.scrolled {
+    background: rgba(11, 15, 23, 0.98);
+    border-bottom-color: var(--border-gold);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    padding: 0.65rem 0;
+}
+
+.nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-glow);
+    border: 1.5px solid var(--primary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.25rem;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.logo span {
+    color: #FFFFFF;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--transition);
+    position: relative;
+    padding: 0.25rem 0;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold-gradient);
+    border-radius: 2px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hotline-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all var(--transition);
+}
+
+.hotline-pill i {
+    color: var(--primary);
+}
+
+.hotline-pill:hover {
+    background: var(--primary-glow);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    padding-top: 8.5rem;
+    padding-bottom: 5.5rem;
+    background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, #0B0F17 0%, #111827 100%);
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: var(--primary-glow);
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-gold);
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #FFFFFF;
+    margin-bottom: 1.25rem;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin-bottom: 2.25rem;
+    max-width: 540px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.stat-num {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.stat-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.hero-visual {
+    position: relative;
+}
+
+.hero-card-main {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-card-main img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9) contrast(1.05);
+}
+
+.hero-floating-badge {
+    position: absolute;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    background: #161F30;
+    border: 1px solid var(--border-gold);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.floating-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--primary-glow);
+    color: var(--primary);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+/* Tiện ích tra cứu vận đơn & HS Code (Tracking Box) */
+.tracking-wrapper {
+    background: #161F30;
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    padding: 2.5rem;
+    margin-top: -3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.tracking-tabs {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 2px solid var(--border-light);
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    transition: color var(--transition);
+}
+
+.tab-btn.active {
+    color: var(--primary);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold-gradient);
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.search-input-group {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.9rem 1.25rem;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    outline: none;
+    transition: all var(--transition);
+    background: var(--bg-input);
+    color: #FFFFFF;
+}
+
+.search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* Timeline trạng thái đơn hàng */
+.status-timeline {
+    margin-top: 2.5rem;
+    padding: 2rem 1.5rem;
+    background: var(--bg-soft);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    display: none;
+}
+
+.status-timeline.visible {
+    display: block;
+}
+
+.timeline-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.timeline-steps::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 3px;
+    background: var(--border-light);
+    z-index: 1;
+}
+
+.timeline-step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+}
+
+.step-circle {
+    width: 44px;
+    height: 44px;
+    background: var(--bg-card);
+    border: 3px solid var(--border-light);
+    border-radius: var(--radius-full);
+    margin: 0 auto 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-weight: 700;
+    transition: all var(--transition);
+}
+
+.timeline-step.completed .step-circle {
+    background: var(--success);
+    border-color: var(--success);
+    color: #0B0F17;
+}
+
+.timeline-step.active .step-circle {
+    background: var(--primary);
+    border-color: var(--primary-light);
+    color: #0B0F17;
+    box-shadow: 0 0 0 5px var(--primary-glow);
+}
+
+.step-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.timeline-step.active .step-title,
+.timeline-step.completed .step-title {
+    color: var(--primary-light);
+    font-weight: 700;
+}
+
+/* Section chung */
+section {
+    padding: 5.5rem 0;
+}
+
+.section-title-wrap {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 3.5rem;
+}
+
+.section-title {
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* Dịch vụ (Services Grid) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 2rem;
+}
+
+.service-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gold-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+.service-box:hover {
+    transform: translateY(-8px);
+    background: var(--bg-card-hover);
+    border-color: var(--border-gold);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.1);
+}
+
+.service-box:hover::after {
+    transform: scaleX(1);
+}
+
+.service-icon-wrap {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-glow);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    transition: all var(--transition);
+}
+
+.service-box:hover .service-icon-wrap {
+    background: var(--gold-gradient);
+    color: #0B0F17;
+    border-color: transparent;
+}
+
+.service-box h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #FFFFFF;
+}
+
+.service-box p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Về chúng tôi (About Section) */
+.about-section {
+    background: var(--bg-soft);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+    color: #FFFFFF;
+}
+
+.about-text p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.about-image-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--border-gold);
+}
+
+.about-image-wrap img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Hệ thống kho bãi & Liên hệ chính hãng */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all var(--transition);
+}
+
+.info-card:hover {
+    border-color: var(--border-gold);
+    transform: translateY(-2px);
+}
+
+.info-card i {
+    width: 44px;
+    height: 44px;
+    background: var(--primary-glow);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-sm);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.info-card h4 {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.info-card p {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.contact-form-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-md);
+}
+
+.contact-form-box h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: #FFFFFF;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary-light);
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color var(--transition);
+    background: var(--bg-input);
+    color: #FFFFFF;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* Sticky Action Icons bên phải màn hình */
+.sticky-actions {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 99;
+}
+
+.sticky-btn {
+    width: 52px;
+    height: 52px;
+    background: #161F30;
+    border: 1.5px solid var(--border-gold);
+    border-radius: var(--radius-full);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: all var(--transition);
+    position: relative;
+}
+
+.sticky-btn:hover {
+    transform: scale(1.12);
+    background: var(--gold-gradient);
+    color: #0B0F17;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.sticky-btn.zalo {
+    color: #38BDF8;
+}
+
+.sticky-btn.phone {
+    color: var(--primary);
+}
+
+/* Footer - Nền đen sâu thẳm & viền vàng Gold */
+.footer {
+    background: #070A0F;
+    border-top: 1px solid var(--border-gold);
+    padding: 4.5rem 0 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+    margin-bottom: 3.5rem;
+}
+
+.footer-col h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: var(--primary);
+}
+
+.footer-col p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-col ul a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color var(--transition);
+}
+
+.footer-col ul a:hover {
+    color: var(--primary);
+    padding-left: 4px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .hero-grid,
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-links,
+    .nav-actions .btn {
+        display: none;
+    }
+    
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .info-cards,
+    .hero-stats,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-steps {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .timeline-steps::before {
+        display: none;
+    }
+}
