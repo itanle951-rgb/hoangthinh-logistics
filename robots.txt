@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://itanle951-rgb.github.io/hoangthinh-logistics/1689/sitemap.xml
