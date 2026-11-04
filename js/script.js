@@ -14,6 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Menu mobile: bật/tắt danh sách liên kết
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (mobileToggle && navLinks) {
+        const setMenu = (open) => {
+            navLinks.classList.toggle('open', open);
+            mobileToggle.setAttribute('aria-expanded', String(open));
+            mobileToggle.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        };
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+        navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+        window.addEventListener('resize', () => { if (window.innerWidth > 992) setMenu(false); });
+    }
+
     // 2. Chuyển đổi Tabs Tra cứu (Vận đơn / Mã HS Code)
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
