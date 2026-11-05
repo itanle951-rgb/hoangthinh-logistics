@@ -938,4 +938,36 @@ section {
     .timeline-steps::before {
         display: none;
     }
+
+    /* Sửa tràn ngang trên mobile (phát hiện bởi webtest.mjs @ 375px):
+       ô tra cứu xuống dòng, khung form thu gọn lề trong */
+    .search-input-group {
+        flex-direction: column;
+    }
+
+    .search-input-group .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .contact-form-box {
+        padding: 1.5rem;
+    }
+}
+
+/* Chống tràn ngang toàn cục: cho phép cột lưới và ô nhập co nhỏ hơn nội dung,
+   ngắt dòng các chuỗi dài không có khoảng trắng (email, địa chỉ, link) */
+.contact-grid > *,
+.info-cards > *,
+.info-card > div {
+    min-width: 0;
+}
+
+.search-input {
+    min-width: 0;
+}
+
+.info-card p,
+.info-card a {
+    overflow-wrap: anywhere;
 }
