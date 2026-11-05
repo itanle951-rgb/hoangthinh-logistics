@@ -1,7 +1,76 @@
-// ============================================================================
-// 1689.VN — LOGIC BẢNG SẢN PHẨM REUP (+20%) & MÁY TÍNH GIÁ VỐN 1688 TỰ ĐỘNG
+﻿// ============================================================================
+// 1689.VN — LOGIC BẢNG SẢN PHẨM REUP (+20%), AFFILIATE CONFIG & ZELLY TRACKER
 // Chú thích 100% bằng tiếng Việt theo chuẩn của Agent Zelly (.claude)
 // ============================================================================
+
+// 1. CẤU HÌNH AFFILIATE & ZALO B2B TẬP TRUNG (Chỉ cần sửa ID tại đây là áp dụng toàn trang)
+const AFFILIATE_CONFIG = {
+    shopeeAffiliateId: "1689vn_hoangthinh",         // Điền Affiliate ID Shopee của bạn vào đây
+    accesstradeDeepLinkPrefix: "",                  // Nếu dùng Accesstrade, điền: "https://go.isclix.com/deep_link/..."
+    zaloB2BUrl: "https://zalo.me/0826828131",       // Link Zalo nhận đơn sỉ trực tiếp Kho Hoàng Thịnh
+    hotlinePhone: "0826828131",
+    n8nWebhookUrl: ""                               // Tùy chọn: URL Webhook n8n để bắn thông báo click theo thời gian thực
+};
+
+// Hàm tự động gắn mã Affiliate & UTM chuẩn xác cho từng sản phẩm
+function buildAffiliateLink(item) {
+    let rawUrl = item.affiliateUrl || `https://shopee.vn/search?keyword=${encodeURIComponent(item.name)}`;
+    if (AFFILIATE_CONFIG.shopeeAffiliateId && !rawUrl.includes("aff_sid=")) {
+        const sep = rawUrl.includes("?") ? "&" : "?";
+        rawUrl = `${rawUrl}${sep}aff_sid=${encodeURIComponent(AFFILIATE_CONFIG.shopeeAffiliateId)}`;
+    }
+    if (AFFILIATE_CONFIG.accesstradeDeepLinkPrefix) {
+        return `${AFFILIATE_CONFIG.accesstradeDeepLinkPrefix}?url=${encodeURIComponent(rawUrl)}&utm_source=1689vn&utm_campaign=reup_${item.id}`;
+    }
+    return rawUrl;
+}
+
+// 2. BỘ ĐO LƯỜNG CHUYỂN ĐỔI THÔNG MINH (ZELLY SMART CLICK TRACKER)
+const ZellyTracker = {
+    storageKey: "zelly_click_metrics",
+    getMetrics() {
+        try {
+            const raw = localStorage.getItem(this.storageKey);
+            return raw ? JSON.parse(raw) : {
+                affiliateClicks: 0,
+                zaloLeads: 0,
+                calculatorUses: 0,
+                events: []
+            };
+        } catch (e) {
+            return { affiliateClicks: 0, zaloLeads: 0, calculatorUses: 0, events: [] };
+        }
+    },
+    track(eventType, label, targetUrl = "") {
+        const data = this.getMetrics();
+        if (eventType === "affiliate_click") data.affiliateClicks = (data.affiliateClicks || 0) + 1;
+        if (eventType === "zalo_b2b_lead") data.zaloLeads = (data.zaloLeads || 0) + 1;
+        if (eventType === "calculator_use") data.calculatorUses = (data.calculatorUses || 0) + 1;
+
+        const entry = {
+            site: "1689.vn",
+            type: eventType,
+            label: label,
+            url: targetUrl,
+            timestamp: new Date().toISOString()
+        };
+        data.events = [entry, ...(data.events || [])].slice(0, 50);
+
+        try {
+            localStorage.setItem(this.storageKey, JSON.stringify(data));
+        } catch (e) {
+            // Bỏ qua nếu trình duyệt chặn localStorage ở chế độ ẩn danh
+        }
+
+        // Gửi tín hiệu không chặn (non-blocking) về Webhook n8n nếu đã cấu hình
+        if (AFFILIATE_CONFIG.n8nWebhookUrl && navigator.sendBeacon) {
+            try {
+                navigator.sendBeacon(AFFILIATE_CONFIG.n8nWebhookUrl, JSON.stringify(entry));
+            } catch (e) {}
+        }
+    }
+};
+window.ZellyTracker = ZellyTracker;
 
 const PRODUCTS_DATA = [
     {
@@ -76,6 +145,19 @@ const PRODUCTS_DATA = [
         desc: "Hiệu ứng khúc xạ pha lê kim cương sang trọng, điều khiển từ xa 16 màu và chạm cảm ứng đỉnh đèn.",
         affiliateUrl: "https://shopee.vn/search?keyword=den%20ngu%20pha%20le%2016%20mau&utm_source=1689vn&utm_medium=product_card&utm_campaign=reup_1688"
     }
+    ,
+    {
+        id: 7,
+        name: "Tai Nghe Bluetooth Trong Suốt ENC Chống Ồn Nội Địa Trung",
+        category: "tech",
+        categoryLabel: "Phụ Kiện Công Nghệ",
+        priceCny: 18.5,
+        costVnd: "94.000đ",
+        retailVnd: "199.000đ",
+        profitPercent: "+53% Lợi Nhuận",
+        desc: "Thiết kế vỏ Mecha trong suốt lộ mạch cực chất, chống ồn đàm thoại ENC kép, pin nghe liên tục 30 giờ.",
+        affiliateUrl: "https://shopee.vn/search?keyword=Tai%20Nghe%20Bluetooth%20Trong%20Su%E1%BB%91t%20ENC%20Ch%E1%BB%91ng%20%E1%BB%92n%20N%E1%BB%99i%20%C4%90%E1%BB%8Ba%20Trung&utm_source=1689vn&utm_medium=product_card&utm_campaign=reup_1688"
+    }
 ];
 
 // Hàm hiển thị danh sách sản phẩm theo bộ lọc ngành hàng
@@ -113,16 +195,27 @@ function renderProducts(filterCategory = "all") {
                     </div>
                 </div>
                 <div class="dual-cta">
-                    <a href="${item.affiliateUrl}" rel="sponsored nofollow noopener" target="_blank" class="btn btn-gold">
+                    <a href="${buildAffiliateLink(item)}" data-track-type="affiliate_click" data-track-label="${item.name}" rel="sponsored nofollow noopener" target="_blank" class="btn btn-gold">
                         <i class="fas fa-cart-plus"></i> Mua Lẻ Ưu Đãi
                     </a>
-                    <a href="https://zalo.me/1995023241660753541" target="_blank" class="btn btn-outline-gold">
+                    <a href="${AFFILIATE_CONFIG.zaloB2BUrl}" data-track-type="zalo_b2b_lead" data-track-label="Đặt sỉ: ${item.name}" target="_blank" class="btn btn-outline-gold">
                         <i class="fas fa-truck-loading"></i> Đặt Sỉ Xưởng
                     </a>
                 </div>
             </div>
         </div>
     `).join("");
+
+    // Gắn sự kiện đo lường chuyển đổi cho các nút CTA trong danh sách sản phẩm
+    grid.querySelectorAll("[data-track-type]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            ZellyTracker.track(
+                btn.getAttribute("data-track-type"),
+                btn.getAttribute("data-track-label"),
+                btn.getAttribute("href")
+            );
+        });
+    });
 }
 
 // Hàm tính toán giá vốn nhập hàng 1688 và giá bán đề xuất (+20%)
@@ -167,6 +260,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lắng nghe sự kiện thay đổi ô nhập máy tính giá vốn
     ["calcPriceCny", "calcQty", "calcWeight", "calcMargin"].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.addEventListener("input", calculateImportCost);
+        if (el) {
+            el.addEventListener("input", calculateImportCost);
+            el.addEventListener("change", () => ZellyTracker.track("calculator_use", `Máy tính giá vốn: ${id}`));
+        }
+    });
+
+    // Theo dõi các nút Zalo / Hotline tĩnh trên toàn trang 1689
+    document.querySelectorAll('a[href*="zalo.me"], a[href^="tel:"]').forEach(link => {
+        if (!link.hasAttribute("data-track-type")) {
+            link.addEventListener("click", () => {
+                ZellyTracker.track("zalo_b2b_lead", link.textContent.trim() || "Liên hệ Zalo/Hotline 1689", link.getAttribute("href"));
+            });
+        }
     });
 });
