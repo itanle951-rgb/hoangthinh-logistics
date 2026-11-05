@@ -1,7 +1,53 @@
 /**
- * HT LOGISTICS - SCRIPT XỬ LÝ TƯƠNG TÁC
+ * HT LOGISTICS - SCRIPT XỬ LÝ TƯƠNG TÁC & ĐO LƯỜNG CHUYỂN ĐỔI (ZELLY TRACKER)
  * Tích hợp API tra cứu vận đơn Google Sheets & HS Code AI từ hoangthinh.net
  */
+
+// BỘ ĐO LƯỜNG CHUYỂN ĐỔI THÔNG MINH (ZELLY SMART CLICK TRACKER)
+const ZellyTracker = {
+    storageKey: 'zelly_click_metrics',
+    webhookUrl: '', // Tùy chọn: URL Webhook n8n nhận thông báo khách B2B theo thời gian thực
+    getMetrics() {
+        try {
+            const raw = localStorage.getItem(this.storageKey);
+            return raw ? JSON.parse(raw) : {
+                affiliateClicks: 0,
+                zaloLeads: 0,
+                trackingLookups: 0,
+                hsCodeLookups: 0,
+                events: []
+            };
+        } catch (e) {
+            return { affiliateClicks: 0, zaloLeads: 0, trackingLookups: 0, hsCodeLookups: 0, events: [] };
+        }
+    },
+    track(eventType, label, targetUrl = '') {
+        const data = this.getMetrics();
+        if (eventType === 'zalo_b2b_lead') data.zaloLeads = (data.zaloLeads || 0) + 1;
+        if (eventType === 'tracking_lookup') data.trackingLookups = (data.trackingLookups || 0) + 1;
+        if (eventType === 'hscode_lookup') data.hsCodeLookups = (data.hsCodeLookups || 0) + 1;
+
+        const entry = {
+            site: 'hoangthinh-logistics',
+            type: eventType,
+            label: label,
+            url: targetUrl,
+            timestamp: new Date().toISOString()
+        };
+        data.events = [entry, ...(data.events || [])].slice(0, 50);
+
+        try {
+            localStorage.setItem(this.storageKey, JSON.stringify(data));
+        } catch (e) {}
+
+        if (this.webhookUrl && navigator.sendBeacon) {
+            try {
+                navigator.sendBeacon(this.webhookUrl, JSON.stringify(entry));
+            } catch (e) {}
+        }
+    }
+};
+window.ZellyTracker = ZellyTracker;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Hiệu ứng Navbar khi cuộn chuột
@@ -169,4 +215,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 6. Đo lường chuyển đổi B2B (Zalo, Hotline, Tra cứu vận đơn & HS Code)
+    document.querySelectorAll('a[href*="zalo.me"], a[href^="tel:"]').forEach(link => {
+        link.addEventListener('click', () => {
+            ZellyTracker.track('zalo_b2b_lead', link.textContent.trim() || 'Liên hệ Zalo/Hotline B2B', link.getAttribute('href'));
+        });
+    });
+
+    if (trackingBtn) {
+        trackingBtn.addEventListener('click', () => {
+            const val = trackingInput ? trackingInput.value.trim() : '';
+            if (val) ZellyTracker.track('tracking_lookup', `Tra vận đơn: ${val}`);
+        });
+    }
+
+    if (hsBtn) {
+        hsBtn.addEventListener('click', () => {
+            const val = hsInput ? hsInput.value.trim() : '';
+            if (val) ZellyTracker.track('hscode_lookup', `Tra HS Code: ${val}`);
+        });
+    }
 });
